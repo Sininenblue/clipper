@@ -12,10 +12,29 @@
     <p>A tool to download parts of a youtube video.</p>
     
     <input type="text" id="urlField">
-    <input type="text" id="qualityField">
-    <input type="text" id="extensionField">
-    <input type="text" id="startTimeField">
-    <input type="text" id="endTimeField">
+    
+    <div>
+    <select name="quality" id="qualityField">
+      <option value="1080">1080</option>
+      <option value="720">720</option>
+      <option value="480">480p</option>
+    </select>
+
+    <select name="extension" id="extensionField">
+      <option value="mp4">mp4</option>
+      <option value="mkv">mkv</option>
+    </select>
+    </div>
+
+    <div>
+    <input type="text" value="00:00:00.00" id="startTimeField">
+    <input type="text" value="00:00:00.00" id="endTimeField">
+    <!-- <input value="00:00:00" type="time" step=".01" id="startTimeField">
+    <input value="00:00:00" type="time" step=".01" id="endTimeField"> -->
+    </div>
+
+    <p id="isDownloading"></p>
+    <p>The file will be downloaded in your downloads folder.</p>
 
     <button id="downloadButton">Download</button>
   </body>

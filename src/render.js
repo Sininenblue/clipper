@@ -5,12 +5,14 @@ const qualityField = document.getElementById('qualityField');
 const extensionField = document.getElementById('extensionField');
 const startTimeField = document.getElementById('startTimeField');
 const endTimeField = document.getElementById('endTimeField');
+const isDownloading = document.getElementById('isDownloading');
+
 const downloadButton = document.getElementById('downloadButton');
 downloadButton.onclick = download;
 
 
 function download() {
-    console.log("pressed button")
+    isDownloading.textContent = 'currently downloading'
 
     let videoUrl = urlField.value;
     let videoQuality = qualityField.value;
@@ -25,5 +27,8 @@ function download() {
         externalDownloader: "ffmpeg",
         externalDownloaderArgs: `ffmpeg_i:-ss ${videoStartTime} -to ${videoEndTime}`,
     })
-        .then(output => console.log(output));
+        .then(output => {
+            console.log(output)
+            isDownloading.textContent = String(output)
+        });
 }
