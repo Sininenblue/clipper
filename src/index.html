@@ -8,14 +8,13 @@
     <script src="render.js" defer></script>
   </head>
   <body>
-    <h1>Youtube Clip Downloader</h1>
-    <p>A tool to download parts of a youtube video.</p>
-    <p>youtube encoding makes the first few seconds have unpredictable quality</p>
-    <p>it's recommended you download a few seconds earlier to avoid this</p>
-    <p>webm doesn't work</p>
-    <p id="ffmpegVersion"></p>
-    <p id="ffmpegPath"></p>
-    
+    <div>
+      <h1>Youtube Clip Downloader</h1>
+      <p>A tool to download parts of a youtube video.</p>
+      <p>youtube encoding makes the first few seconds have unpredictable quality</p>
+      <p>it's recommended you download a few seconds earlier to avoid this</p>
+    </div>  
+
     <input type="text" id="urlField">
     
     <div>
@@ -32,6 +31,7 @@
     </select>
     </div>
 
+    <!-- I wonder if I should make this into a hour min sec input so that it somewhat easir -->
     <div>
     <input type="text" value="00:00:00.00" id="startTimeField">
     <input type="text" value="00:00:00.00" id="endTimeField">
