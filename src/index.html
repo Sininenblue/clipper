@@ -10,14 +10,20 @@
   <body>
     <h1>Youtube Clip Downloader</h1>
     <p>A tool to download parts of a youtube video.</p>
+    <p>youtube encoding makes the first few seconds have unpredictable quality</p>
+    <p>it's recommended you download a few seconds earlier to avoid this</p>
+    <p>webm doesn't work</p>
+    <p id="ffmpegVersion"></p>
+    <p id="ffmpegPath"></p>
     
     <input type="text" id="urlField">
     
     <div>
     <select name="quality" id="qualityField">
+      <option value="best">best</option>
       <option value="1080">1080</option>
       <option value="720">720</option>
-      <option value="480">480p</option>
+      <option value="480">480</option>
     </select>
 
     <select name="extension" id="extensionField">
@@ -29,8 +35,6 @@
     <div>
     <input type="text" value="00:00:00.00" id="startTimeField">
     <input type="text" value="00:00:00.00" id="endTimeField">
-    <!-- <input value="00:00:00" type="time" step=".01" id="startTimeField">
-    <input value="00:00:00" type="time" step=".01" id="endTimeField"> -->
     </div>
 
     <p id="isDownloading"></p>
