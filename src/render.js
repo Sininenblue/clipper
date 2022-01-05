@@ -36,11 +36,12 @@ function download() {
         ffmpegLocation: ffmpeg.path,
         mergeOutputFormat: videoExtention,
         noPlaylist: true,
+
         externalDownloader: "ffmpeg",
         externalDownloaderArgs: `ffmpeg_i:-ss ${videoStartTime} -to ${videoEndTime}`,
     })
         .then(output => {
             console.log(output)
-            isDownloading.textContent = String(output)
+            isDownloading.textContent = 'download success, you can find the video on your downloads folder'
         });
 }
