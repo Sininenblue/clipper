@@ -4,42 +4,53 @@
     <meta charset="UTF-8">
     <title>Youtube Clip Downloader</title>
     <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
 
     <script src="render.js" defer></script>
   </head>
   <body>
-    <div>
+    <div class="flexColumn">
       <h1>Youtube Clip Downloader</h1>
       <p>A tool to download parts of a youtube video.</p>
       <p>youtube encoding makes the first few seconds have unpredictable quality</p>
       <p>it's recommended you download a few seconds earlier to avoid this</p>
     </div>  
 
-    <input type="text" id="urlField">
-    
-    <div>
-    <select name="quality" id="qualityField">
-      <option value="best">best</option>
-      <option value="1080">1080</option>
-      <option value="720">720</option>
-      <option value="480">480</option>
-    </select>
-
-    <select name="extension" id="extensionField">
-      <option value="mp4">mp4</option>
-      <option value="mkv">mkv</option>
-    </select>
+    <div class="flex">
+      <input type="text" id="urlField">
+      <span class="material-icons" id="confirmField">check_circle_outline</span>
     </div>
 
-    <!-- I wonder if I should make this into a hour min sec input so that it somewhat easir -->
-    <div>
-    <input type="text" value="00:00:00.00" id="startTimeField">
-    <input type="text" value="00:00:00.00" id="endTimeField">
+    <div class="flex">
+      <label for="paddingCheckBox">Clip Padding</label>
+      <input type="checkbox" id="paddingCheckBox" class="paddingCheckBox" checked>
+      <select name="quality" id="qualityField">
+        <option value="best">best</option>
+        <option value="1080">1080</option>
+        <option value="720">720</option>
+        <option value="480">480</option>
+      </select>
+
+      <select name="extension" id="extensionField">
+        <option value="mp4">mp4</option>
+        <option value="mkv">mkv</option>
+      </select>
     </div>
 
-    <p id="isDownloading"></p>
-    <p>The file will be downloaded in your downloads folder.</p>
+    <div class="flex">
+      <label for="startTimeField">Start Time</label>
+      <input type="text" value="00:00:00.00" id="startTimeField" class="timeInput">
+      <label for="endTimeField">End Time</label>
+      <input type="text" value="00:00:00.00" id="endTimeField" class="timeInput">
+    </div>
 
-    <button id="downloadButton">Download</button>
+    <div class="flexColumn">
+      <p id="isDownloading"></p>
+      <p>The file will be downloaded in your downloads folder.</p>
+
+      <button id="downloadButton">Download</button>
+    </div>
   </body>
 </html>
