@@ -31,7 +31,16 @@ function simulateDownload() {
 function download() {
     isDownloading.textContent = 'currently downloading'
 
-    if (paddingCheckBox.value === 'on') console.log("check mark checked");
+    //calculates start time and adds padding
+    let padding = 0
+    if (paddingCheckBox.checked) padding = 5;
+    let startTime = String(startTimeField.value).split(":");
+    let hours = parseInt(startTime[0])
+    let minutes = parseInt(startTime[1])
+    let seconds = parseInt(startTime[2])
+    let finalStartTime = (hours * 3600) + (minutes * 60) + (seconds) - padding
+    Math.max(finalStartTime, 0)
+
     
     let videoQuality = `[height <=? ${qualityField.value}]`;
     if (qualityField.value === 'best') videoQuality = '';
@@ -45,7 +54,7 @@ function download() {
         noPlaylist: true,
 
         externalDownloader: "ffmpeg",
-        externalDownloaderArgs: `ffmpeg_i:-ss ${startTimeField.value} -to ${endTimeField.value}`,
+        externalDownloaderArgs: `ffmpeg_i:-ss ${finalStartTime} -to ${endTimeField.value}`,
     })
         .then(output => {
             console.log(output)
