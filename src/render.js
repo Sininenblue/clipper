@@ -1,8 +1,8 @@
 const youtubedl = require('yt-dlp-exec');
+const fs = require('fs')
 const ffmpeg = require('@ffmpeg-installer/ffmpeg');
 
 const urlField = document.getElementById('urlField');
-const confirmField = document.getElementById('confirmField');
 const paddingCheckBox = document.getElementById('paddingCheckBox');
 const qualityField = document.getElementById('qualityField');
 const extensionField = document.getElementById('extensionField');
@@ -12,20 +12,6 @@ const isDownloading = document.getElementById('isDownloading');
 
 const downloadButton = document.getElementById('downloadButton');
 downloadButton.onclick = download;
-
-// have a thing where if you place a complete youtube url youtube dl checks if it's valid
-// think about jquery
-function simulateDownload() {
-    youtubedl(urlField.value), {
-        getUrl: true,
-    }
-        .then(output => {
-            if (output.includes('ERROR')) {
-                console.log('ERROR');
-                confirmField.textContent = 'highlight_off';
-            } else confirmField.textContent = 'check_circle_outline';
-        })
-}
 
 
 function download() {
@@ -47,7 +33,7 @@ function download() {
     let videoFormat = `bestvideo${videoQuality}+bestaudio[ext=m4a]/bestvideo+bestaudio/best"`;
 
     youtubedl(urlField.value, {
-        o: `~/Downloads/%(title)s.%(ext)s`,
+        o: `~/Downloads/%(title)s - ${startTimeField.value.replace(":", "")} - ${endTimeField.value.replace(":", "")}.%(ext)s`,
         format: videoFormat,
         ffmpegLocation: ffmpeg.path,
         mergeOutputFormat: extensionField.value,
@@ -56,8 +42,16 @@ function download() {
         externalDownloader: "ffmpeg",
         externalDownloaderArgs: `ffmpeg_i:-ss ${finalStartTime} -to ${endTimeField.value}`,
     })
-        .then(output => {
-            console.log(output)
-            isDownloading.textContent = 'download success, you can find the video on your downloads folder'
-        });
+        .then(downloadSuccess, downloadFailure)
+    
+}
+
+function downloadSuccess(output) {
+    console.log(output)
+    isDownloading.textContent = 'download success, you can find the video on your downloads folder'
+}
+
+function downloadFailure(error) {
+    console.log(error)
+    isDownloading.textContent = 'error, something bad happened'
 }
